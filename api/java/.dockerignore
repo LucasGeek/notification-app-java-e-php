@@ -1,0 +1,38 @@
+﻿# Ignorar arquivos temporários e desnecessários do Maven
+target/
+pom.xml.versionsBackup
+pom.xml.tag
+pom.xml.releaseBackup
+release.properties
+dependency-reduced-pom.xml
+
+# Ignorar configurações específicas do IDE
+*.iml
+.idea/
+*.log
+*.vs/
+*.swp
+*.swo
+.vscode/
+
+# Ignorar arquivos e diretórios de controle de versão
+.git/
+.gitignore
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos e diretórios de build locais
+build/
+out/
+
+# Ignorar caches de arquivos
+*.class
+*.jar
+*.war
+*.ear
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log

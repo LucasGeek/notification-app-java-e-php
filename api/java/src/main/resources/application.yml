@@ -1,0 +1,66 @@
+﻿server:
+  port: 8080
+
+spring:
+  application:
+    name: notification
+
+  jackson:
+    mapper:
+      DEFAULT_VIEW_INCLUSION: true
+    serialization:
+      indent_output: true
+      WRITE_DATES_AS_TIMESTAMPS: false
+    deserialization:
+      FAIL_ON_IGNORED_PROPERTIES: false
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+      ACCEPT_SINGLE_VALUE_AS_ARRAY: true
+    default-property-inclusion: non_empty
+
+  datasource:
+    url: jdbc:postgresql://postgres-db:5432/notification
+    username: postgres
+    password: postgres
+    hikari:
+      cachePrepStmts: true
+      prepStmtCacheSize: 250
+      prepStmtCacheSqlLimit: 2048
+      useServerPrepStmts: true
+
+  jpa:
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  data:
+    jpa:
+      repositories:
+        enabled: true
+
+  security:
+    jwt:
+      secret: "vT7dez2qP1PaBNN3d5yoWF7Yhz8ss07iI4w+jnBntBU="
+      expiration: 300000 # 5 minutes
+      token-prefix: Bearer
+      header-string: Authorization
+
+springdoc:
+  api-docs:
+    path: /api
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+    com.example: DEBUG
+  file:
+    name: app.log
