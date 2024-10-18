@@ -54,7 +54,7 @@ public class UserController extends BaseController {
     // Rota para obter os dados do usuário autenticado (JWT necessário)
     @Operation(summary = "Obter dados do usuário autenticado", description = "Retorna os dados do usuário autenticado.",
             security = { @SecurityRequirement(name = "JSON Web Token") })
-    @PostMapping("/me")
+    @GetMapping("/me")
     public ResponseEntity<?> getUserProfile(Authentication authentication) {
         ResponseEntity<?> validationResponse = validateAuthenticatedUser(authentication);
         if (validationResponse.getStatusCode() != HttpStatus.OK) {
