@@ -2,7 +2,6 @@ package com.example.notification.application.handlers;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

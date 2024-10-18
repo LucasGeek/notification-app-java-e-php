@@ -18,7 +18,7 @@ spring:
     default-property-inclusion: non_empty
 
   datasource:
-    url: jdbc:postgresql://postgres-db:5432/notification
+    url: jdbc:postgresql://localhost:5432/notification
     username: postgres
     password: postgres
     hikari:

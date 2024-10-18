@@ -7,7 +7,9 @@ import com.example.notification.application.validators.notification_type.Notific
 import com.example.notification.application.validators.notification_type.NotificationTypeUpdateValidator;
 
 import com.example.notification.domain.repositories.NotificationTypeRepository;
+import com.example.notification.domain.repositories.NotificationRepository;
 import com.example.notification.domain.entities.NotificationType;
+import com.example.notification.domain.entities.Notification;
 import com.example.notification.domain.entities.User;
 
 import io.vavr.collection.Seq;
@@ -22,16 +24,20 @@ import java.util.UUID;
 @Service
 public class NotificationTypeHandler {
 
+    private final NotificationRepository notificationRepository;
     private final NotificationTypeRepository notificationTypeRepository;
-    private final NotificationTypeRequestValidator notificationTypeRequestValidator;
     private final NotificationTypeUpdateValidator notificationTypeUpdateValidator;
+    private final NotificationTypeRequestValidator notificationTypeRequestValidator;
 
-    public NotificationTypeHandler(NotificationTypeRepository notificationTypeRepository,
-                                   NotificationTypeRequestValidator notificationTypeRequestValidator,
-                                   NotificationTypeUpdateValidator notificationTypeUpdateValidator) {
+    public NotificationTypeHandler(
+        NotificationRepository notificationRepository,
+        NotificationTypeRepository notificationTypeRepository,
+        NotificationTypeRequestValidator notificationTypeRequestValidator,
+        NotificationTypeUpdateValidator notificationTypeUpdateValidator) {
+        this.notificationRepository = notificationRepository;
         this.notificationTypeRepository = notificationTypeRepository;
-        this.notificationTypeRequestValidator = notificationTypeRequestValidator;
         this.notificationTypeUpdateValidator = notificationTypeUpdateValidator;
+        this.notificationTypeRequestValidator = notificationTypeRequestValidator;
     }
 
     //Criar um novo tipo de notificação usando Either para validação
@@ -73,15 +79,27 @@ public class NotificationTypeHandler {
 
     // Excluir um tipo de notificação
     public Either<String, Void> deleteNotificationType(UUID id) {
+        // Verificar se o tipo de notificação existe
         Optional<NotificationType> optionalType = notificationTypeRepository.findById(id);
 
         if (optionalType.isPresent()) {
-            notificationTypeRepository.delete(optionalType.get());
+            NotificationType notificationType = optionalType.get();
+
+            // Verificar se existem notificações associadas a este tipo de notificação
+            List<Notification> associatedNotifications = notificationRepository.findByNotificationType(notificationType);
+
+            if (!associatedNotifications.isEmpty()) {
+                return Either.left("Não é possível excluir este tipo de notificação, pois existem notificações associadas.");
+            }
+
+            // Excluir o tipo de notificação
+            notificationTypeRepository.delete(notificationType);
             return Either.right(null);
         } else {
             return Either.left("Tipo de notificação não encontrado");
         }
     }
+
 
     // Buscar um tipo de notificação pelo ID
     public Either<String, NotificationType> getNotificationTypeById(UUID id) {

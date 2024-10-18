@@ -1,10 +1,8 @@
-﻿version: '3.8'
-
-services:
+﻿services:
   # Serviço do PostgreSQL
-  postgres:
+  postgres-java:
     image: postgres:13-alpine
-    container_name: postgres-db
+    container_name: postgres-java
     environment:
       POSTGRES_DB: notification
       POSTGRES_USER: postgres
@@ -23,16 +21,16 @@ services:
       retries: 3
 
   # Serviço do Spring Boot (aplicação Java)
-  app:
+  notification-app-java:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: notification-app
+    container_name: notification-app-java
     depends_on:
       postgres:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/notification
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-java:5432/notification
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_JPA_HIBERNATE_DDL_AUTO: update

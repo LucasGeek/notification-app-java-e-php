@@ -1,17 +1,16 @@
 package com.example.notification.infrastructure.configurations;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.extensions.Extension;
 import io.swagger.v3.oas.annotations.info.Contact;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
-
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
-import org.springframework.context.annotation.Configuration;
-
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @OpenAPIDefinition(
@@ -24,8 +23,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
                                 @Extension(name = "x-contato", properties = {}),
                         }),
                 title = "API de Notificações em Java",
-                version = "1.0",
-                description = "Documentação da API"
+                version = "1.0.0",
+                description = "Documentação da API de Notificações em Spring Boot"
         ),
         servers = {
                 @Server(
