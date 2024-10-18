@@ -1,0 +1,43 @@
+# Ignorar diretórios e arquivos do Laravel que não são necessários no contêiner
+node_modules
+npm-debug.log
+yarn-error.log
+.env
+.env.backup
+.env.testing
+.env.production
+
+# Ignorar cache e logs
+storage/*.log
+storage/*.key
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/testing/*
+storage/framework/views/*
+storage/logs/*
+bootstrap/cache/*
+
+# Ignorar arquivos de configuração do Git
+.git
+.gitignore
+
+# Ignorar arquivos do Composer que não são necessários
+vendor/
+composer.lock
+
+# Ignorar outros arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignorar arquivos de build do Docker
+docker-compose.yml
+Dockerfile
+
+# Ignorar arquivos de teste
+/tests
+/phpunit.xml
+/phpunit.xml.dist

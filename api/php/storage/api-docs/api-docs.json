@@ -1,0 +1,511 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Notificações em PHP",
+        "description": "Documentação da API de Notificações em Laravel",
+        "contact": {
+            "name": "Lucas Albuquerque",
+            "url": "https://www.linkedin.com/in/lucasgeek",
+            "email": "lucas.albuquerque@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://my-default-host.com",
+            "description": "API Host"
+        }
+    ],
+    "paths": {
+        "/api/news/create": {
+            "post": {
+                "tags": [
+                    "Notificações"
+                ],
+                "summary": "Criar uma nova notificação",
+                "description": "Cria uma notificação para o usuário autenticado.",
+                "operationId": "fe37ca8c0029f90fc5904cf666d05a40",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Notificação criada"
+                    },
+                    "400": {
+                        "description": "Erro ao criar notificação"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/news/me": {
+            "get": {
+                "tags": [
+                    "Notificações"
+                ],
+                "summary": "Listar todas as notificações",
+                "description": "Lista todas as notificações do usuário autenticado.",
+                "operationId": "ec2f6522d0fab1ab6dfaf24c424dcb64",
+                "responses": {
+                    "200": {
+                        "description": "Listagem de notificações"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/news/update/{news_id}": {
+            "put": {
+                "tags": [
+                    "Notificações"
+                ],
+                "summary": "Atualizar uma notificação",
+                "description": "Atualiza uma notificação específica do usuário.",
+                "operationId": "4b809bd2525e9b4f04308e3d79d88faa",
+                "parameters": [
+                    {
+                        "name": "news_id",
+                        "in": "path",
+                        "description": "ID da notificação",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notificação atualizada"
+                    },
+                    "404": {
+                        "description": "Notificação não encontrada"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/type/create": {
+            "post": {
+                "tags": [
+                    "Tipos de Notificações"
+                ],
+                "summary": "Criar um novo tipo de notificação",
+                "description": "Cria um novo tipo de notificação para o usuário autenticado.",
+                "operationId": "73473acce11f7b75dda6d009c353f5f8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationTypeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Tipo de notificação criado"
+                    },
+                    "400": {
+                        "description": "Erro ao criar tipo de notificação"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/type/me": {
+            "get": {
+                "tags": [
+                    "Tipos de Notificações"
+                ],
+                "summary": "Listar tipos de notificação do usuário",
+                "description": "Lista todos os tipos de notificação do usuário autenticado.",
+                "operationId": "dc3554919f261f744a9c6339ae4ba439",
+                "responses": {
+                    "200": {
+                        "description": "Lista de tipos de notificação"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/type/update/{typeId}": {
+            "put": {
+                "tags": [
+                    "Tipos de Notificações"
+                ],
+                "summary": "Atualizar um tipo de notificação",
+                "description": "Atualiza um tipo de notificação específico do usuário.",
+                "operationId": "17c31eb72718f71f67c7f3b9042b2405",
+                "parameters": [
+                    {
+                        "name": "typeId",
+                        "in": "path",
+                        "description": "ID do tipo de notificação",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NotificationTypeUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Tipo de notificação atualizado"
+                    },
+                    "404": {
+                        "description": "Tipo de notificação não encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/type/delete/{typeId}": {
+            "delete": {
+                "tags": [
+                    "Tipos de Notificações"
+                ],
+                "summary": "Deletar um tipo de notificação",
+                "description": "Exclui um tipo de notificação específico do usuário.",
+                "operationId": "bdd76a010dc692c2ed954a79c6021c6e",
+                "parameters": [
+                    {
+                        "name": "typeId",
+                        "in": "path",
+                        "description": "ID do tipo de notificação",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Tipo de notificação excluído"
+                    },
+                    "404": {
+                        "description": "Tipo de notificação não encontrado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Registrar um novo usuário",
+                "description": "Cria um novo usuário com os dados fornecidos.",
+                "operationId": "9e4fe892e10767d1e81dcf4ddf87b0ff",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserRegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuário registrado com sucesso"
+                    },
+                    "400": {
+                        "description": "Dados inválidos"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Login do usuário",
+                "description": "Autentica o usuário e retorna um token JWT.",
+                "operationId": "e50d4253c7a9cef3ce2fc45ee80172aa",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserLoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso"
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas"
+                    }
+                }
+            }
+        },
+        "/api/me": {
+            "get": {
+                "tags": [
+                    "Usuários"
+                ],
+                "summary": "Obter dados do usuário autenticado",
+                "description": "Retorna os dados do usuário autenticado.",
+                "operationId": "4bbecd45948cf4409ff90263e02bc1dd",
+                "responses": {
+                    "200": {
+                        "description": "Dados do usuário autenticado"
+                    },
+                    "401": {
+                        "description": "Usuário não autenticado"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "NotificationRequest": {
+                "required": [
+                    "typeId",
+                    "titulo",
+                    "descricao",
+                    "corpo"
+                ],
+                "properties": {
+                    "typeId": {
+                        "description": "ID do tipo de notificação",
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "c3c48ed8-fd34-4a76-b68a-abb4f64c5f98"
+                    },
+                    "titulo": {
+                        "description": "Título da notificação",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Nova atualização disponível"
+                    },
+                    "descricao": {
+                        "description": "Descrição da notificação",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Uma nova versão do aplicativo foi lançada."
+                    },
+                    "corpo": {
+                        "description": "Corpo completo da notificação",
+                        "type": "string",
+                        "example": "Por favor, atualize seu aplicativo para aproveitar os novos recursos."
+                    },
+                    "imagemDestaque": {
+                        "description": "URL opcional da imagem de destaque",
+                        "type": "string",
+                        "format": "url",
+                        "example": "https://exemplo.com/imagem.png",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "NotificationTypeRequest": {
+                "required": [
+                    "nomeTipo"
+                ],
+                "properties": {
+                    "nomeTipo": {
+                        "description": "Nome do tipo de notificação",
+                        "type": "string",
+                        "maxLength": 255,
+                        "pattern": "^[A-Za-zÀ-ÿ ']{3,255}$",
+                        "example": "Novo Tipo de Notificação",
+                        "nullable": false
+                    }
+                },
+                "type": "object"
+            },
+            "NotificationTypeUpdateRequest": {
+                "required": [
+                    "novoNomeTipo"
+                ],
+                "properties": {
+                    "novoNomeTipo": {
+                        "description": "Novo nome do tipo de notificação",
+                        "type": "string",
+                        "maxLength": 255,
+                        "pattern": "^[A-Za-zÀ-ÿ ']{3,255}$",
+                        "example": "Atualização do Tipo de Notificação",
+                        "nullable": false
+                    }
+                },
+                "type": "object"
+            },
+            "NotificationUpdateRequest": {
+                "required": [
+                    "titulo",
+                    "descricao",
+                    "corpo"
+                ],
+                "properties": {
+                    "titulo": {
+                        "description": "Título da notificação",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "Atualização da notificação"
+                    },
+                    "descricao": {
+                        "description": "Descrição da notificação",
+                        "type": "string",
+                        "maxLength": 255,
+                        "example": "A notificação foi atualizada."
+                    },
+                    "corpo": {
+                        "description": "Corpo completo da notificação",
+                        "type": "string",
+                        "example": "A notificação foi alterada para refletir novas informações."
+                    },
+                    "imagemDestaque": {
+                        "description": "URL opcional da imagem de destaque",
+                        "type": "string",
+                        "format": "url",
+                        "example": "https://exemplo.com/atualizacao-imagem.png",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "UserLoginRequest": {
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "description": "Email do usuário",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "description": "password do usuário",
+                        "type": "string",
+                        "format": "password"
+                    }
+                },
+                "type": "object"
+            },
+            "UserRegisterRequest": {
+                "required": [
+                    "nome",
+                    "sobrenome",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "nome": {
+                        "description": "Nome do usuário",
+                        "type": "string"
+                    },
+                    "sobrenome": {
+                        "description": "Sobrenome do usuário",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Email do usuário",
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "description": "password do usuário (mínimo de 8 caracteres)",
+                        "type": "string",
+                        "format": "password"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Notificações",
+            "description": "APIs para gerenciamento de notificações"
+        },
+        {
+            "name": "Tipos de Notificações",
+            "description": "APIs para gerenciamento de tipos de notificação"
+        },
+        {
+            "name": "Usuários",
+            "description": "APIs para gerenciamento de usuários"
+        }
+    ]
+}
