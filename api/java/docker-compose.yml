@@ -27,7 +27,7 @@
       dockerfile: Dockerfile
     container_name: notification-app-java
     depends_on:
-      postgres:
+      postgres-java:
         condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-java:5432/notification
