@@ -17,11 +17,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/notification
     username: postgres
     password: postgres
-    hikari:
-      cachePrepStmts: true
-      prepStmtCacheSize: 250
-      prepStmtCacheSqlLimit: 2048
-      useServerPrepStmts: true
 ```
 
 3. Execute o seguinte comando para instalar as dependências e compilar o projeto:
