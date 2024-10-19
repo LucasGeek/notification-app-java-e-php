@@ -9,7 +9,7 @@ Você pode executar este projeto de duas formas: com Docker ou sem Docker.
 
 1. Garanta que você tenha o Java 23 e Maven 3.9.9 instalados em sua máquina.
 
-2. Edite o arquivo `application.yml` na raiz do projeto com a seguinte configuração de banco de dados:
+2. Edite o arquivo `application.yml` com a seguinte configuração de banco de dados:
 
 ```yaml
 spring:
